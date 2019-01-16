@@ -12,6 +12,5 @@ steppzilla.github.io/bruch/zweiterVersuch.html
 > lkajdsflkjadsf
 
 ```java
-import kitties;
 System.out.println('jjj');
 ```
