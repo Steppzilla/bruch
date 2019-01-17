@@ -1,9 +1,8 @@
 
 //bruchbild(1,3,  $("#BruchBild"));
 function bruchbild(zähler,nenner, dort){
-  for(z=1;z<100;z++){
-    dort.parent().children().eq(z).hide();
-  }
+
+
 
   var radius  = 50;
 
@@ -15,9 +14,11 @@ function bruchbild(zähler,nenner, dort){
 
     var kommazahl = zähler/nenner;
 
-  //  dort.parent().children().hide();
-    dort.show(); //erstes Element muss drin bleiben
+    dort.empty();
+    $("#BruchBild").clone().appendTo(dort);
 
+    dort.children().first().show(); //erstes Element muss drin bleiben
+    dort.children().first().css("opacity","1");
     //var hier = dort.parent().chidren().eq(i);
     bruchteilebauen(nenner,dort);
   //behälter leeren, nur 1 kreis beibehalten
@@ -30,34 +31,34 @@ function bruchbild(zähler,nenner, dort){
 
     var a="0," + restAnfang + " , " + bruch1 + " ,0";
 
-    dort.find(".teil").eq(i).css("stroke-dasharray",a);
+    dort.children().first().find(".teil").eq(i).css("stroke-dasharray",a);
   //  dort.css("background-color","green");
 
     if(i%2==0){
-      dort.find(".teil").eq(i).css("stroke","steelblue");
+      dort.children().first().find(".teil").eq(i).css("stroke","steelblue");
     }else{
-      dort.find(".teil").eq(i).css("stroke"," #3366ff");
+      dort.children().first().find(".teil").eq(i).css("stroke"," #3366ff");
     }
   }
 
 
   for(i=0;i<(kommazahl-1);i++){   // Vielfache klonen. automatisch schon richtige Einteilung
 
-    dort.clone().appendTo(dort.parent()); //nur den Inhalt/Kreis kopieren in die box
+    dort.children().first().clone().appendTo(dort.children().first().parent()); //nur den Inhalt/Kreis kopieren in die box
   }
 
 
   for(f=0;f<zähler;f++){      //rot färben //muss unterschieden werden für größer 1
     if(f%2==0){
-      dort.find(".teil").eq(f).css("stroke","#b30000");
+      dort.children().first().find(".teil").eq(f).css("stroke","#b30000");
       if(f>=nenner){
-        dort.next().find(".teil").eq(f-nenner).css("stroke","#b30000");
+        dort.children().first().next().find(".teil").eq(f-nenner).css("stroke","#b30000");
       }
     }else{
-      dort.find(".teil").eq(f).css("stroke","#cc0000");
+      dort.children().first().find(".teil").eq(f).css("stroke","#cc0000");
       if(f>=nenner){
 
-        dort.next().find(".teil").eq(f-nenner).css("stroke","#cc0000");
+        dort.children().first().next().find(".teil").eq(f-nenner).css("stroke","#cc0000");
       }
     }
     //größere zähler:
@@ -78,7 +79,7 @@ function bruchteilebauen(nenner,dort){
     circle.setAttributeNS(null, "stroke-width","48");
     circle.setAttributeNS(null, "stroke-dasharray","0,0,0,0");
 
-    dort.append(circle);
+    dort.children().first().append(circle);
   }
 
 }

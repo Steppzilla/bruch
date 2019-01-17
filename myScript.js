@@ -97,11 +97,11 @@ $("#Aufgabenübersicht").find("p").click(function(){
 		$(".bilderFeld").children().removeAttr("id");
 		$(".bilderFeld").css("height","100%");
 		//sichtbar machen:
-		$(".bilderFeld").children().eq(0).children().eq(0).css("opacity","100");
-		$(".bilderFeld").children().eq(1).children().eq(0).css("opacity","100");
+//
+	//	$(".bilderFeld").children().eq(1).children().eq(0).css("opacity","100");
 		//Bild 1 erstellen:
-		var ort1 = $(".bilderFeld").children().eq(0).children().eq(0);
-		var ort2 = $(".bilderFeld").children().eq(1).children().eq(0);
+		var ort1 = $(".bilderFeld").children().eq(0);
+		var ort2 = $(".bilderFeld").children().eq(1);
 		bruchbild(aufgabe[0],aufgabe[1], ort1);
 		bruchbild(aufgabe[2],aufgabe[3], ort2);
 		$(".bruchBox").find(".zählerböxchen ,.nennerböxchen").click(function(){
@@ -186,7 +186,7 @@ function ergebnischeck(aufgabe){
 		var l1 = zähler1/nenner1;
 
 		$(".bilderFeld").children().eq(2).children().eq(0).css("opacity","100");
-		var ort3 = $(".bilderFeld").children().eq(2).children().eq(0);
+		var ort3 = $(".bilderFeld").children().eq(2);
 		bruchbild(zähler1,nenner1, ort3);
 
 		if(a1==l1){
@@ -208,7 +208,7 @@ function ergebnischeck(aufgabe){
 		}
 		var l2 = zähler2/nenner2;
 		$(".bilderFeld").children().eq(3).children().eq(0).css("opacity","100");
-		var ort4 = $(".bilderFeld").children().eq(3).children().eq(0);
+		var ort4 = $(".bilderFeld").children().eq(3);
 		bruchbild(zähler2,nenner2, ort4);
 		if(a2==l2){
 			$(".zählerböxchen").parent().eq(3).css("background-color","green");
@@ -223,7 +223,7 @@ function ergebnischeck(aufgabe){
 	}else{
 		var l3 = zähler3/nenner3;
 		$(".bilderFeld").children().eq(4).children().eq(0).css("opacity","100");
-		var ort5 = $(".bilderFeld").children().eq(4).children().eq(0);
+		var ort5 = $(".bilderFeld").children().eq(4);
 		bruchbild(zähler3,nenner3, ort5);
 		if(ergebnis==l3){
 			$(".zählerböxchen").parent().eq(4).css("background-color","green");
