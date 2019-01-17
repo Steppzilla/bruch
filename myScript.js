@@ -86,26 +86,20 @@ $("#Aufgabenübersicht").find("p").click(function(){
 		$(".nennerböxchen").eq(0).text(aufgabe[1]);
 		$(".nennerböxchen").eq(1).text(aufgabe[3]);
 		$(".bilderFeld").empty();
-		$("#BruchbildBox").clone().appendTo(".bilderFeld");  // Bild vom ersten Bruch erschaffen
-		$("#BruchbildBox").clone().appendTo(".bilderFeld");
-		$("#BruchbildBox").clone().appendTo(".bilderFeld");
-		$("#BruchbildBox").clone().appendTo(".bilderFeld");
-		$("#BruchbildBox").clone().appendTo(".bilderFeld");
-
-		$(".bilderFeld #BruchBild").removeAttr("id");
-		$(".bilderFeld").find("#BruchbildBox").removeAttr("id");
-		$(".bilderFeld").children().removeAttr("id");
+		for(i=0;i<5;i++){
+			$(".bilderFeld").append("<div class='bruchbildböxchen'> </div>");  // Bild vom ersten Bruch erschaffen
+		}
 		$(".bilderFeld").css("height","100%");
 		//sichtbar machen:
-//
-	//	$(".bilderFeld").children().eq(1).children().eq(0).css("opacity","100");
+
 		//Bild 1 erstellen:
 		var ort1 = $(".bilderFeld").children().eq(0);
 		var ort2 = $(".bilderFeld").children().eq(1);
+
 		bruchbild(aufgabe[0],aufgabe[1], ort1);
 		bruchbild(aufgabe[2],aufgabe[3], ort2);
 		$(".bruchBox").find(".zählerböxchen ,.nennerböxchen").click(function(){
-			inputMachen($(this), aufgabe);
+		inputMachen($(this), aufgabe);
 		});
 }); //ende click links
 
@@ -185,7 +179,7 @@ function ergebnischeck(aufgabe){
 		var a1 = aufgabe[0] / aufgabe[1];
 		var l1 = zähler1/nenner1;
 
-		$(".bilderFeld").children().eq(2).children().eq(0).css("opacity","100");
+	//	$(".bilderFeld").children().eq(2).children().eq(0).css("opacity","100");
 		var ort3 = $(".bilderFeld").children().eq(2);
 		bruchbild(zähler1,nenner1, ort3);
 

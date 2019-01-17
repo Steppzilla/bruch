@@ -9,6 +9,8 @@ function bruchbild(zähler,nenner, dort){
   var kommazahl = zähler/nenner;
   dort.empty();
   $("#BruchBild").clone().appendTo(dort);
+  $(".bilderFeld").children().find("#BruchBild").removeAttr("id"); //wichtig! sonst kaputte Klone
+
 //  dort.children().first().show(); //erstes Element muss drin bleiben
   dort.children().first().css("opacity","1");
   //var hier = dort.parent().chidren().eq(i);
@@ -34,7 +36,7 @@ function bruchbild(zähler,nenner, dort){
   }
 
 
-  for(i=0;i<(kommazahl-1);i++){   // Vielfache klonen. automatisch schon richtige Einteilung
+  for(i=1;i<(kommazahl);i++){   // Vielfache klonen. automatisch schon richtige Einteilung
 
     dort.children().first().clone().appendTo(dort.children().first().parent()); //nur den Inhalt/Kreis kopieren in die box
   }
@@ -58,7 +60,6 @@ function bruchbild(zähler,nenner, dort){
   }
 }
 function bruchteilebauen(nenner,dort){
-//  var circle = '<circle class="teil" cx="55"  cy="55"  r="24" stroke-width="48" stroke-dasharray="0,0,0,0" />';
   //alert(nenner + "   " + dort);
   for(j=0;j<nenner;j++){
     var svgNS = "http://www.w3.org/2000/svg";
