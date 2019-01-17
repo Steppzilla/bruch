@@ -1,12 +1,11 @@
 
-function additionsaufgabe(){
+function additionsaufgabe(zeichen){
   var zählerA = rand(0,10);
   var nennerA = rand(1,10);
   var zählerB = rand(0,10);
   var nennerB = rand(1,10);
 
-  var nennerLös = nennerA*nennerB;
-  var zählerLös = zählerA*nennerB + zählerB*nennerA;
+
 
 if(zählerA>nennerA){
   var speicher=zählerA;
@@ -19,17 +18,27 @@ if(zählerB>nennerB){
   zählerB=nennerB;
   nennerB=speicher;
 }
-  //var aufgabenstring={
-  //  zählerA: zählerA,
-  //  nennerA: nennerA,
-  //  zählerB: zählerB,
-//    nennerB: nennerB,
-//    zählerLös: zählerLös,
-//    nennerLös: nennerLös,
-//  }
-  var aufgabenstring = [zählerA, nennerA, zählerB, nennerB, zählerLös, nennerLös];
+
+if(zeichen=="+"){
+  var zählerLös = zählerA*nennerB + zählerB*nennerA;
+  var nennerLös = nennerA*nennerB;
+}else if(zeichen=="-"){
+    var zählerLös = zählerA*nennerB - zählerB*nennerA;
+    var nennerLös = nennerA*nennerB;
+}else if(zeichen=="*"){
+  var zählerLös = zählerA*zählerB;
+  var nennerLös = nennerA*nennerB;
+}else if(zeichen==":"){
+  var zählerLös = zählerA*nennerB;
+  var nennerLös = nennerA*zählerB;
+}
+
+
+  var aufgabenstring = [zählerA, nennerA, zählerB, nennerB, zählerLös, nennerLös,zeichen];
   return aufgabenstring;
 }
+
+
 
 function aufgaben(){
 

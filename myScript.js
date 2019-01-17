@@ -7,45 +7,24 @@ var aufgabenwahl ;
 linkeSeiteschreiben();
 $(".menu").find(".druck").hide();
 
-for(i=2;i<10; i++){
-	var x= $("#Aufträge").children().eq(i-1);
-	x.hide();
-}
-
-
-
-
-
-
-
-
-//Aufgaben schreiben wenn bild angeklickt wird: und lösungs-ILndex speichern ('aufgabenwahl');
 
 
 $("#Aufgabenübersicht").find("p").click(function(){
-
-
-
 	$("#Aufgabenübersicht").children().removeClass("yellow");
 	$(this).addClass("yellow");
 	var zahl=	$(this).index();
 	window.aufgabenwahl=zahl;
-		$("#Aufgabentext").children().eq(0).children().eq(0).html("Aufgabe");//überschrift
+	$("#Aufgabentext").children().eq(0).children().eq(0).html("Aufgabe");//überschrift
 
-		var div1= "<div class='bruchBox'></div>";
-		var div2= "<div class='operatorBox'> <p class='operator'> +</p> </div>";
-		var div3= "<div class='bruchBox'></div>";
-
-		var div4= "<div class='gleichBox'><p class='operator'> =</p> </div>";
-
-		var div5= "<div class='bruchBox'></div>";
-		var div6= "<div class='operatorBox'> <p class='operator'> +</p> </div>";
-		var div7= "<div class='bruchBox'></div>";
-
-		var div8= "<div class='gleichBox'><p class='operator'> =</p> </div>";
-		var div9= "<div class='bruchBox'></div>";
-
-
+	var div1= "<div class='bruchBox'></div>";
+	var div2= "<div class='operatorBox'> <p class='operator'> +</p> </div>";
+	var div3= "<div class='bruchBox'></div>";
+	var div4= "<div class='gleichBox'><p class='operator'> =</p> </div>";
+	var div5= "<div class='bruchBox'></div>";
+	var div6= "<div class='operatorBox'> <p class='operator'> +</p> </div>";
+	var div7= "<div class='bruchBox'></div>";
+	var div8= "<div class='gleichBox'><p class='operator'> =</p> </div>";
+	var div9= "<div class='bruchBox'></div>";
 
 	$("#aufgabenFeld").children().eq(0).html("");
 	$("#aufgabenFeld").children().eq(0).append(div1);//
@@ -55,52 +34,93 @@ $("#Aufgabenübersicht").find("p").click(function(){
 	$("#aufgabenFeld").children().eq(0).append(div5);//
 	$("#aufgabenFeld").children().eq(0).append(div6);//
 	$("#aufgabenFeld").children().eq(0).append(div7);//
-		$("#aufgabenFeld").children().eq(0).append(div8);//
-			$("#aufgabenFeld").children().eq(0).append(div9);//
+	$("#aufgabenFeld").children().eq(0).append(div8);//
+	$("#aufgabenFeld").children().eq(0).append(div9);//
 
 	var zählerdiv = "<p class='zählerböxchen' ></p>";
 	var bruchstrichdiv = "<hr>";
 	var nennerdiv = "<p class='nennerböxchen' ></p>";
 
 	$(".bruchBox").append(zählerdiv);
-		$(".bruchBox").append(bruchstrichdiv);
-			$(".bruchBox").append(nennerdiv);
+	$(".bruchBox").append(bruchstrichdiv);
+	$(".bruchBox").append(nennerdiv);
 
-	var aufgabe = additionsaufgabe();
-	//alert(aufgabe);
-//	for(i=0;i<aufgabe.length;i++){
+	var ix = $(this).index() ;
+	//alert(ix);
+	switch(ix){
+			case 0 :
+				aufgabe = additionsaufgabe("+");
+				$(".operatorBox").children().eq(0).text("+");
+				mitteshow();
+				break;
+			case 1:
+				aufgabe = additionsaufgabe("-");
+				$(".operatorBox").eq(0).children().eq(0).text("-");
+				$(".operatorBox").eq(1).children().eq(0).text("-");
+				mitteshow();
+				break;
+			case 2:
+				aufgabe = additionsaufgabe("*");
+				$(".operatorBox").children().eq(0).text("*");
+				mittehide();
+				break;
+			case 3:
+				aufgabe = additionsaufgabe(":");
+				$(".operatorBox").eq(0).children().eq(0).text(":");
+				$(".operatorBox").eq(1).children().eq(0).text("*");
+				mitteshow();
+				break;
+			case 4:
+				aufgabe = additionsaufgabe("erweitern");
+				$(".operatorBox").children().eq(0).text("?");
+				break;
+			case 5:
+				aufgabe = additionsaufgabe("gemischt");
+				$(".operatorBox").children().eq(0).text("?");
+				break;
+		}
 
-$(".zählerböxchen").eq(0).text(aufgabe[0]);
-$(".zählerböxchen").eq(1).text(aufgabe[2]);
-$(".nennerböxchen").eq(0).text(aufgabe[1]);
-$(".nennerböxchen").eq(1).text(aufgabe[3]);
+			//	for(i=0;i<aufgabe.length;i++){
+		$(".zählerböxchen").eq(0).text(aufgabe[0]);
+		$(".zählerböxchen").eq(1).text(aufgabe[2]);
+		$(".nennerböxchen").eq(0).text(aufgabe[1]);
+		$(".nennerböxchen").eq(1).text(aufgabe[3]);
+		$(".bilderFeld").empty();
+		$("#BruchbildBox").clone().appendTo(".bilderFeld");  // Bild vom ersten Bruch erschaffen
+		$("#BruchbildBox").clone().appendTo(".bilderFeld");
+		$("#BruchbildBox").clone().appendTo(".bilderFeld");
+		$("#BruchbildBox").clone().appendTo(".bilderFeld");
+		$("#BruchbildBox").clone().appendTo(".bilderFeld");
 
+		$(".bilderFeld #BruchBild").removeAttr("id");
+		$(".bilderFeld").find("#BruchbildBox").removeAttr("id");
+		$(".bilderFeld").children().removeAttr("id");
+		$(".bilderFeld").css("height","100%");
+		//sichtbar machen:
+		$(".bilderFeld").children().eq(0).children().eq(0).css("opacity","100");
+		$(".bilderFeld").children().eq(1).children().eq(0).css("opacity","100");
+		//Bild 1 erstellen:
+		var ort1 = $(".bilderFeld").children().eq(0).children().eq(0);
+		var ort2 = $(".bilderFeld").children().eq(1).children().eq(0);
+		bruchbild(aufgabe[0],aufgabe[1], ort1);
+		bruchbild(aufgabe[2],aufgabe[3], ort2);
+		$(".bruchBox").find(".zählerböxchen ,.nennerböxchen").click(function(){
+			inputMachen($(this), aufgabe);
+		});
+}); //ende click links
 
-$(".bilderFeld").empty();
-$("#BruchBild").clone().appendTo(".bilderFeld");  // Bild vom ersten Bruch erschaffen
-$("#BruchBild").clone().appendTo(".bilderFeld");
-$(".bilderFeld").children().removeAttr("id");
-//sichtbar machen:
-$(".bilderFeld").children().eq(0).css("opacity","100");
-$(".bilderFeld").children().eq(1).css("opacity","100");
-//Bild 1 erstellen:
-var ort1 = $(".bilderFeld").children().eq(0);
-var ort2 = $(".bilderFeld").children().eq(1);
-
-bruchbild(aufgabe[0],aufgabe[1], ort1);
-bruchbild(aufgabe[2],aufgabe[3], ort2);
-
-$(".bruchBox").find("p").click(function(){
-	$(this).css("background-color","black");
-	inputMachen();
-});
-
-
-
-}); //ende click links (bisher nur addition)
-
-
-
+function mittehide(){
+	$(".bruchBox").eq(2).hide();
+	$(".bruchBox").eq(3).hide();
+	$(".operatorBox").eq(1).hide();
+	$(".gleichBox").eq(0).hide();
+}
+function mitteshow(){
+	$(".bruchBox").eq(2).show();
+	$(".bruchBox").eq(3).show();
+	$(".operatorBox").eq(1).show();
+	$(".gleichBox").eq(0).show();
+}
 
 function linkeSeiteschreiben(){
 	for(i=0;i<iconString.length;i++){
@@ -113,48 +133,107 @@ function linkeSeiteschreiben(){
 	}
 }
 
-
 //VierfelderTafel Input:
-function inputMachen(textFeldNummer){
+function inputMachen(objekt, aufgabe){
 				//Input-Fenster löschen: (führt nicht zum error, selbst beim ersten klick,obwohl noch keins vorhanden ist... mh=?...
 				$("input").remove();
 				// Wähle die geklickte Box der Grid-Tabelle aus:
-				var boxWähler = $("#vierfelderBox").children().eq(textFeldNummer) ;
+				var boxWähler = objekt;
 				// Box leeren:
 				var inhaltsspeicher = boxWähler.children();
-				//boxWähler.empty();
+				boxWähler.empty();
 				//leeres Eingabefeld erzeugen und einfügen:
 				var text1	= "<input type='text' class='input' size='4' id='inputFeld'>" ;
 				boxWähler.append(text1);
 				boxWähler.children().eq(0).focus();
-				//wenn Enter nicht gedrückt wird und stattdessen wieder geklickt wird: dennoch das Eingabefenster löschen!
-				//bei Enter: text ins feld schreiben und Textfeld ausblenden/löschen
 				$("#inputFeld").keypress(
 					function(e) {
 						if (e.keyCode == 13){
 							var textUser =boxWähler.children().eq(0).val();    // Der Value, also der eingegebene Text wird ausgelesen aus der Zelle und in textUser gespeichert.
 							boxWähler.empty();
-							var newUserElement = "<p>".concat(textUser, "</p>");
+							var newUserElement = "<p style='font-size:24pt' >".concat(textUser, "</p>");
 
 							if(textUser==""){
 									 boxWähler.append(inhaltsspeicher);
 							}else{
 								boxWähler.append(newUserElement);
 
-								vierfelderTafelPrüfen();//allles was falsch ist wird dort markiert!
+								ergebnischeck(aufgabe);//allles wird als bruch gemalt und ggf hintergrund markiert
 								//Feedback:
-								if(boxWähler.attr("class").indexOf("black")==-1){
-									feedback(true);			//positives Feedback
-								}else{
-										feedback(false);			//positives Feedback
-								}
 							}
 						} //enter
 					}
 				);
 }
 
+function ergebnischeck(aufgabe){
+	var zeichen = aufgabe[6];
+	var zähler1 = $(".zählerböxchen").eq(2).text();
+	var zähler2 = $(".zählerböxchen").eq(3).text();
+	var zähler3 = $(".zählerböxchen").eq(4).text();
 
+	var nenner1 = $(".nennerböxchen").eq(2).text();
+	var nenner2 = $(".nennerböxchen").eq(3).text();
+	var nenner3 = $(".nennerböxchen").eq(4).text();
+
+	var ergebnis = aufgabe[4]/aufgabe[5];
+
+	//erster  Bruch
+	if( (isNaN(zähler1))||(isNaN(nenner1))||(zähler1=="")||(nenner1=="")){
+	}
+	else{
+		var a1 = aufgabe[0] / aufgabe[1];
+		var l1 = zähler1/nenner1;
+
+		$(".bilderFeld").children().eq(2).children().eq(0).css("opacity","100");
+		var ort3 = $(".bilderFeld").children().eq(2).children().eq(0);
+		bruchbild(zähler1,nenner1, ort3);
+
+		if(a1==l1){
+			$(".zählerböxchen").parent().eq(2).css("background-color","green");
+		}else{
+			$(".zählerböxchen").parent().eq(2).css("background-color","purple");
+		}
+	}
+
+//zweiter Bruch
+	if( (isNaN(zähler2))||(isNaN(nenner2))||(zähler2=="")||(nenner2=="")){
+	}else{
+		//unterschied bei geteilt aufgaben, da muss 2. bruch kehrwert sein!
+		var a2 =0;
+		if(zeichen==":"){
+			a2 = aufgabe[3] / aufgabe[2];
+		}else{
+			a2 = aufgabe[2] / aufgabe[3];
+		}
+		var l2 = zähler2/nenner2;
+		$(".bilderFeld").children().eq(3).children().eq(0).css("opacity","100");
+		var ort4 = $(".bilderFeld").children().eq(3).children().eq(0);
+		bruchbild(zähler2,nenner2, ort4);
+		if(a2==l2){
+			$(".zählerböxchen").parent().eq(3).css("background-color","green");
+		}else{
+			$(".zählerböxchen").parent().eq(3).css("background-color","purple");
+		}
+	}
+
+//Ergebnis:
+	if( (isNaN(zähler3))||(isNaN(nenner3))||(zähler3=="")||(nenner3=="")){
+		//alert("nix beides zahl");
+	}else{
+		var l3 = zähler3/nenner3;
+		$(".bilderFeld").children().eq(4).children().eq(0).css("opacity","100");
+		var ort5 = $(".bilderFeld").children().eq(4).children().eq(0);
+		bruchbild(zähler3,nenner3, ort5);
+		if(ergebnis==l3){
+			$(".zählerböxchen").parent().eq(4).css("background-color","green");
+		}else{
+			$(".zählerböxchen").parent().eq(4).css("background-color","purple");
+		}
+	}
+
+//	alert(zähler1 + " " + zähler2 + "  "+ zähler3 + " " + nenner1 + " + " + nenner2 + "  " + nenner3);
+}
 
 
 
