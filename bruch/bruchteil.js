@@ -1,26 +1,18 @@
 
 //bruchbild(1,3,  $("#BruchBild"));
 function bruchbild(zähler,nenner, dort){
-
-
-
   var radius  = 50;
-
   var u = 150;
   var bruch1= 150/nenner;
   var restEnde= 0;
   var restAnfang= 0;
-
-
-    var kommazahl = zähler/nenner;
-
-    dort.empty();
-    $("#BruchBild").clone().appendTo(dort);
-
-    dort.children().first().show(); //erstes Element muss drin bleiben
-    dort.children().first().css("opacity","1");
-    //var hier = dort.parent().chidren().eq(i);
-    bruchteilebauen(nenner,dort);
+  var kommazahl = zähler/nenner;
+  dort.empty();
+  $("#BruchBild").clone().appendTo(dort);
+//  dort.children().first().show(); //erstes Element muss drin bleiben
+  dort.children().first().css("opacity","1");
+  //var hier = dort.parent().chidren().eq(i);
+  bruchteilebauen(nenner,dort);
   //behälter leeren, nur 1 kreis beibehalten
 
 
