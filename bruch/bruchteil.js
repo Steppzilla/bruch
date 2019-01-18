@@ -44,21 +44,29 @@ function bruchbild(zähler,nenner, dort){
 
   for(f=0;f<zähler;f++){      //rot färben //muss unterschieden werden für größer 1
     if(f%2==0){
-      dort.children().first().find(".teil").eq(f).css("stroke","#b30000");
-      if(f>=nenner){
-        dort.children().first().next().find(".teil").eq(f-nenner).css("stroke","#b30000");
+    //  dort.children().first().find(".teil").eq(f).css("stroke","#b30000");
+      for(k=0;k<(kommazahl);k++){
+        if((f>=k*nenner)&&(f<(k+1)*nenner)){
+          dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#b30000");
+        }
       }
     }else{
-      dort.children().first().find(".teil").eq(f).css("stroke","#cc0000");
-      if(f>=nenner){
-
-        dort.children().first().next().find(".teil").eq(f-nenner).css("stroke","#cc0000");
+      for(k=0;k<(kommazahl);k++){
+        if((f>=k*nenner)&&(f<(k+1)*nenner)){
+        dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#cc0000");
+      }
       }
     }
+
     //größere zähler:
 
   }
 }
+
+
+
+
+
 function bruchteilebauen(nenner,dort){
   //alert(nenner + "   " + dort);
   for(j=0;j<nenner;j++){
