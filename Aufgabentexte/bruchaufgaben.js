@@ -2,7 +2,7 @@
 function additionsaufgabe(zeichen){
   var zählerA = rand(0,10);
   var nennerA = rand(1,10);
-  var zählerB = rand(0,10);
+  var zählerB = rand(1,10);
   var nennerB = rand(1,10);
 
 
