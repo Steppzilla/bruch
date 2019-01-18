@@ -6,7 +6,7 @@ function bruchbild(zähler,nenner, dort){
   var bruch1= 150/nenner;
   var restEnde= 0;
   var restAnfang= 0;
-  var kommazahl = zähler/nenner;
+  var kommazahl = Math.abs(zähler)/nenner; //absolut also betrag
   dort.empty();
   $("#BruchBild").clone().appendTo(dort);
   $(".bilderFeld").children().find("#BruchBild").removeAttr("id"); //wichtig! sonst kaputte Klone
@@ -42,19 +42,25 @@ function bruchbild(zähler,nenner, dort){
   }
 
 
-  for(f=0;f<zähler;f++){      //rot färben //muss unterschieden werden für größer 1
+  for(f=0;f<Math.abs(zähler);f++){      //rot färben //muss unterschieden werden für größer 1
     if(f%2==0){
     //  dort.children().first().find(".teil").eq(f).css("stroke","#b30000");
       for(k=0;k<(kommazahl);k++){
         if((f>=k*nenner)&&(f<(k+1)*nenner)){
           dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#b30000");
+          if (zähler<0){
+              dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","orange");
+          }
         }
       }
     }else{
       for(k=0;k<(kommazahl);k++){
         if((f>=k*nenner)&&(f<(k+1)*nenner)){
         dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#cc0000");
-      }
+        if (zähler<0){
+            dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","darkorange");
+          }
+        }
       }
     }
 
