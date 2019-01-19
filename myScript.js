@@ -45,53 +45,63 @@ $("#Aufgabenübersicht").find("p").click(function(){
 	$(".bruchBox").append(bruchstrichdiv);
 	$(".bruchBox").append(nennerdiv);
 
+
+ //svg kopieren/Kreis erstellen:
+	$(".bilderFeld").empty();
+	for(i=0;i<5;i++){
+		$(".bilderFeld").append("<div class='bruchbildböxchen'> </div>");  // Bild vom ersten Bruch erschaffen
+	}
+	$(".bilderFeld .bruchbildböxchen").addClass("lightgrey");
+	$(".bilderFeld").css("height","100%");
+
+//Je nach Aufgabe unterschiedliche "Muster"
 	var ix = $(this).index() ;
 	//alert(ix);
 	switch(ix){
 			case 0 :
 				aufgabe = additionsaufgabe("+");
 				$(".operatorBox").children().eq(0).text("+");
-				mitteshow();
+					$("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7]);
 				break;
 			case 1:
 				aufgabe = additionsaufgabe("-");
 				$(".operatorBox").eq(0).children().eq(0).text("-");
 				$(".operatorBox").eq(1).children().eq(0).text("-");
-				mitteshow();
+					$("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7]);
 				break;
 			case 2:
 				aufgabe = additionsaufgabe("*");
 				$(".operatorBox").children().eq(0).text("*");
+				$("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7]);
 				mittehide();
 				break;
 			case 3:
 				aufgabe = additionsaufgabe(":");
 				$(".operatorBox").eq(0).children().eq(0).text(":");
 				$(".operatorBox").eq(1).children().eq(0).text("*");
-				mitteshow();
+				$("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7]);
 				break;
 			case 4:
 				aufgabe = additionsaufgabe("erweitern");
-				$(".operatorBox").children().eq(0).text("?");
+				$(".bruchBox").eq(1).hide();  //2. bruch wird nicht benötigt beim erweitern.
+				$(".operatorBox").eq(0).hide(); //
+				$(".bilderFeld .bruchbildböxchen").eq(1).hide(); //entsprechendes bild
+				$(".operatorBox").eq(1).children().eq(0).text("=");
+				$("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7][0] + aufgabe[7][1] +  aufgabe[7][2]);
 				break;
 			case 5:
 				aufgabe = additionsaufgabe("gemischt");
 				$(".operatorBox").children().eq(0).text("?");
+					$("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7]);
 				break;
 		}
 
-			//	for(i=0;i<aufgabe.length;i++){
+			//Aufgabe schreiben:
+
 		$(".zählerböxchen").eq(0).text(aufgabe[0]);
 		$(".zählerböxchen").eq(1).text(aufgabe[2]);
 		$(".nennerböxchen").eq(0).text(aufgabe[1]);
 		$(".nennerböxchen").eq(1).text(aufgabe[3]);
-		$(".bilderFeld").empty();
-		for(i=0;i<5;i++){
-			$(".bilderFeld").append("<div class='bruchbildböxchen'> </div>");  // Bild vom ersten Bruch erschaffen
-		}
-		$(".bilderFeld .bruchbildböxchen").addClass("lightgrey");
-		$(".bilderFeld").css("height","100%");
-		//sichtbar machen:
 
 		//Bild 1 erstellen:
 		var ort1 = $(".bilderFeld").children().eq(0);
@@ -100,23 +110,23 @@ $("#Aufgabenübersicht").find("p").click(function(){
 		bruchbild(aufgabe[0],aufgabe[1], ort1);
 		bruchbild(aufgabe[2],aufgabe[3], ort2);
 
+
+		//clickfunktion für lösungen
+
 		$(".bruchBox").find(".zählerböxchen ,.nennerböxchen").click(function(){
 		inputMachen($(this), aufgabe);
 		});
 }); //ende click links
 
 function mittehide(){
+	$(".bilderFeld .bruchbildböxchen").eq(2).hide();
+	$(".bilderFeld .bruchbildböxchen").eq(3).hide();
 	$(".bruchBox").eq(2).hide();
 	$(".bruchBox").eq(3).hide();
 	$(".operatorBox").eq(1).hide();
 	$(".gleichBox").eq(0).hide();
 }
-function mitteshow(){
-	$(".bruchBox").eq(2).show();
-	$(".bruchBox").eq(3).show();
-	$(".operatorBox").eq(1).show();
-	$(".gleichBox").eq(0).show();
-}
+
 
 function linkeSeiteschreiben(){
 	for(i=0;i<iconString.length;i++){
@@ -181,12 +191,23 @@ function ergebnischeck(aufgabe){
 		var a1 = aufgabe[0] / aufgabe[1];
 		var l1 = zähler1/nenner1;
 
-	//	$(".bilderFeld").children().eq(2).children().eq(0).css("opacity","100");
+
 		var ort3 = $(".bilderFeld").children().eq(2);
 		bruchbild(zähler1,nenner1, ort3);
 
 		if(a1==l1){
-			$(".zählerböxchen").parent().eq(2).css("background-color","darkgreen");
+			//erweitern : 1. bruch muss Aufgabenstellung entsprechen:
+			var erweiterungsZ = aufgabe[8][0];
+			if((zeichen=="erweitern")&&(zähler1==aufgabe[0]*erweiterungsZ)){
+					$(".zählerböxchen").parent().eq(2).css("background-color","darkgreen");
+			}		else if((zeichen=="erweitern")&&(zähler1!=aufgabe[0]*erweiterungsZ)){
+				//richtig erweitert, entspricht aber nicht der aufgabenstellung:
+				$(".zählerböxchen").parent().eq(2).css("background-color","yellow");
+		//		alert(zähler1 + " " + aufgabe[0] + " " + erweiterungsZ);
+			}else{ //hier bei addition auf gleichen Nenner achten?
+				$(".zählerböxchen").parent().eq(2).css("background-color","darkgreen");
+			}
+
 		}else{
 			$(".zählerböxchen").parent().eq(2).css("background-color","purple");
 		}
@@ -195,11 +216,14 @@ function ergebnischeck(aufgabe){
 //zweiter Bruch
 	if( (isNaN(zähler2))||(isNaN(nenner2))||(zähler2=="")||(nenner2=="")){
 	}else{
-		//unterschied bei geteilt aufgaben, da muss 2. bruch kehrwert sein!
+		//unterschied bei geteilt aufgaben, da muss 2. bruch kehrwert sein! Beim Erweitern muss das ergebnis dem ersten entsprechen
 		var a2 =0;
 		if(zeichen==":"){
 			a2 = aufgabe[3] / aufgabe[2];
-		}else{
+		}else if(zeichen=="erweitern"){
+			a2 = aufgabe[0] / aufgabe[1];
+		}
+		else{
 			a2 = aufgabe[2] / aufgabe[3];
 		}
 		var l2 = zähler2/nenner2;
@@ -207,11 +231,23 @@ function ergebnischeck(aufgabe){
 		var ort4 = $(".bilderFeld").children().eq(3);
 		bruchbild(zähler2,nenner2, ort4);
 		if(a2==l2){
-			$(".zählerböxchen").parent().eq(3).css("background-color","darkgreen");
+			var erweiterungsZ = aufgabe[8][1];
+			if((zeichen=="erweitern")&&(zähler2==zähler1/erweiterungsZ)){
+					$(".zählerböxchen").parent().eq(3).css("background-color","darkgreen");
+			}		else if((zeichen=="erweitern")&&(zähler2!=zähler1/erweiterungsZ)){
+				//richtig erweitert, entspricht aber nicht der aufgabenstellung:
+				$(".zählerböxchen").parent().eq(3).css("background-color","yellow");
+				alert(zähler2 + " = " + zähler1 + "  :  " + erweiterungsZ);
+			}else{ //hier bei addition auf gleichen Nenner achten?
+				$(".zählerböxchen").parent().eq(3).css("background-color","darkgreen");
+			}
+
 		}else{
 			$(".zählerböxchen").parent().eq(3).css("background-color","purple");
 		}
+
 	}
+
 
 //Ergebnis:
 	if( (isNaN(zähler3))||(isNaN(nenner3))||(zähler3=="")||(nenner3=="")){
@@ -222,7 +258,16 @@ function ergebnischeck(aufgabe){
 		var ort5 = $(".bilderFeld").children().eq(4);
 		bruchbild(zähler3,nenner3, ort5);
 		if(ergebnis==l3){
-			$(".zählerböxchen").parent().eq(4).css("background-color","darkgreen");
+			var erweiterungsZ = aufgabe[8][2];
+			if((zeichen=="erweitern")&&(zähler3==zähler2/erweiterungsZ)){
+					$(".zählerböxchen").parent().eq(4).css("background-color","darkgreen");
+			}		else if((zeichen=="erweitern")&&(zähler1!=zähler2/erweiterungsZ)){
+				//richtig erweitert, entspricht aber nicht der aufgabenstellung:
+				$(".zählerböxchen").parent().eq(4).css("background-color","yellow");
+			}else{ //hier bei addition auf gleichen Nenner achten?
+				$(".zählerböxchen").parent().eq(4).css("background-color","darkgreen");
+			}
+
 		}else{
 			$(".zählerböxchen").parent().eq(4).css("background-color","purple");
 		}

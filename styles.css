@@ -8,9 +8,6 @@
   font-family: Roboto, Helvetica, Times New Roman;
 }
 
-
-
-
 .bilderFeld .bruchbildböxchen{
   display: flex;
   height: auto;
@@ -20,9 +17,9 @@
 
 .bilderFeld{
   padding:5pt;
-    grid-gap: 4pt;
+  grid-gap: 4pt;
   display:grid;
- height:80pt;
+  height:80pt;
   grid-template-columns: 18% 20% 20% 20% 20%;
   justify-content: center;
 
@@ -407,7 +404,7 @@ DIV.intro p{  margin: 0;
 
 
 
-/* schmaler desktop/wenig pixel bzw Handy hochkant*/
+/* schmaler desktop/ Handy hochkant*/
 @media  screen and (max-width:450px){
   body {
 	width:100%;
@@ -443,6 +440,9 @@ DIV.intro p{  margin: 0;
   .tab{
     font-size:6pt;
     height:14pt;
+  }
+  .bilderFeld{
+    height:40pt;
   }
 }
 
