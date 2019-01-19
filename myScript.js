@@ -89,6 +89,7 @@ $("#Aufgabenübersicht").find("p").click(function(){
 		for(i=0;i<5;i++){
 			$(".bilderFeld").append("<div class='bruchbildböxchen'> </div>");  // Bild vom ersten Bruch erschaffen
 		}
+		$(".bilderFeld .bruchbildböxchen").addClass("lightgrey");
 		$(".bilderFeld").css("height","100%");
 		//sichtbar machen:
 
@@ -98,6 +99,7 @@ $("#Aufgabenübersicht").find("p").click(function(){
 
 		bruchbild(aufgabe[0],aufgabe[1], ort1);
 		bruchbild(aufgabe[2],aufgabe[3], ort2);
+
 		$(".bruchBox").find(".zählerböxchen ,.nennerböxchen").click(function(){
 		inputMachen($(this), aufgabe);
 		});

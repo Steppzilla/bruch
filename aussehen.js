@@ -13,7 +13,7 @@ function coloring(){
 	$("h2").addClass("rund");
 	$("h3").addClass("rund");
 	//Baum-Hintergrund:
-	$("#mySVG").addClass("rund");
+//	$("#mySVG").addClass("rund");
 	$(".main").find("p").addClass("padding");
 	$(".aufträge").find(".flex-behälter").addClass("padding");
 	$(".con").addClass("padding");
@@ -21,13 +21,13 @@ function coloring(){
 	var positionX = -window.svghöhe -25-220+"px";
 	$("#taBelle").css("top",positionX);
 
-	$(".bilderFeld .bruchbildböxchen").removeAttr("background-color");
+	$(".bilderFeld .bruchbildböxchen").removeClass();
 	$(".bilderFeld .bruchbildböxchen").addClass("lightgrey");
 
 }
 
 function vierfarbengeben(dunkel2, dunkel1, hell1, hell2,hintergrund){
-	$(".mySvg").addClass(hell1);
+//	$(".mySvg").addClass(hell1);
 	$(".aufgabenübersicht").addClass(hell2);
 	$("button").addClass(dunkel2);
 	$("button").css("color", "darkgrey");

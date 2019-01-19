@@ -17,12 +17,9 @@
   justify-content: center;
   border-radius:10pt;
 }
-.bruchbildböxchen svg{
-
-}
-
 
 .bilderFeld{
+  padding:5pt;
     grid-gap: 4pt;
   display:grid;
  height:80pt;

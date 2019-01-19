@@ -1,4 +1,5 @@
 
+
 function additionsaufgabe(zeichen){
   var zählerA = rand(0,10);
   var nennerA = rand(1,10);
