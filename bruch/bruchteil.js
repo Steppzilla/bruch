@@ -9,63 +9,68 @@ function bruchbild(zähler,nenner, dort){
   var restAnfang= 0;
   var kommazahl = Math.abs(zähler)/nenner; //absolut also betrag
   dort.empty();
-  $("#BruchBild").clone().appendTo(dort);
-  $(".bilderFeld").children().find("#BruchBild").removeAttr("id"); //wichtig! sonst kaputte Klone
 
-//  dort.children().first().show(); //erstes Element muss drin bleiben
-  dort.children().first().css("opacity","1");
-  //var hier = dort.parent().chidren().eq(i);
-  bruchteilebauen(nenner,dort);
-  //behälter leeren, nur 1 kreis beibehalten
+  if(nenner!=0){
+    $("#BruchBild").clone().appendTo(dort);
+    $(".bilderFeld").children().find("#BruchBild").removeAttr("id"); //wichtig! sonst kaputte Klone
+
+    //  dort.children().first().show(); //erstes Element muss drin bleiben
+    dort.children().first().css("opacity","1");
+    //var hier = dort.parent().chidren().eq(i);
+    bruchteilebauen(nenner,dort);
+    //behälter leeren, nur 1 kreis beibehalten
 
 
 
-  for(i=0;i<nenner;i++){              //blau färben, vor-Einteilung /Stückelung
-    restAnfang = i*bruch1;
-    restEnde=150-bruch1-restAnfang;
+    for(i=0;i<nenner;i++){              //blau färben, vor-Einteilung /Stückelung
+      restAnfang = i*bruch1;
+      restEnde=150-bruch1-restAnfang;
 
-    var a="0," + restAnfang + " , " + bruch1 + " ,0";
+      var a="0," + restAnfang + " , " + bruch1 + " ,0";
 
-    dort.children().first().find(".teil").eq(i).css("stroke-dasharray",a);
-  //  dort.css("background-color","green");
+      dort.children().first().find(".teil").eq(i).css("stroke-dasharray",a);
+      //  dort.css("background-color","green");
 
-    if(i%2==0){
-      dort.children().first().find(".teil").eq(i).css("stroke","steelblue");
-    }else{
-      dort.children().first().find(".teil").eq(i).css("stroke"," #3366ff");
+      if(i%2==0){
+        dort.children().first().find(".teil").eq(i).css("stroke","steelblue");
+      }else{
+        dort.children().first().find(".teil").eq(i).css("stroke"," #3366ff");
+      }
     }
-  }
 
 
-  for(i=1;i<(kommazahl);i++){   // Vielfache klonen. automatisch schon richtige Einteilung
+    for(i=1;i<(kommazahl);i++){   // Vielfache klonen. automatisch schon richtige Einteilung
 
-    dort.children().first().clone().appendTo(dort.children().first().parent()); //nur den Inhalt/Kreis kopieren in die box
-  }
+      dort.children().first().clone().appendTo(dort.children().first().parent()); //nur den Inhalt/Kreis kopieren in die box
+    }
 
 
-  for(f=0;f<Math.abs(zähler);f++){      //rot färben //muss unterschieden werden für größer 1
-    if(f%2==0){
-    //  dort.children().first().find(".teil").eq(f).css("stroke","#b30000");
-      for(k=0;k<(kommazahl);k++){
-        if((f>=k*nenner)&&(f<(k+1)*nenner)){
-          dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#b30000");
-          if (zähler<0){
+    for(f=0;f<Math.abs(zähler);f++){      //rot färben //muss unterschieden werden für größer 1
+      if(f%2==0){
+        //  dort.children().first().find(".teil").eq(f).css("stroke","#b30000");
+        for(k=0;k<(kommazahl);k++){
+          if((f>=k*nenner)&&(f<(k+1)*nenner)){
+            dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#b30000");
+            if (zähler<0){
               dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","orange");
+            }
+          }
+        }
+      }else{
+        for(k=0;k<(kommazahl);k++){
+          if((f>=k*nenner)&&(f<(k+1)*nenner)){
+            dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#cc0000");
+            if (zähler<0){
+              dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","darkorange");
+            }
           }
         }
       }
-    }else{
-      for(k=0;k<(kommazahl);k++){
-        if((f>=k*nenner)&&(f<(k+1)*nenner)){
-        dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","#cc0000");
-        if (zähler<0){
-            dort.children().eq(k).find(".teil").eq(f-k*nenner).css("stroke","darkorange");
-          }
-        }
-      }
+
     }
 
-    //größere zähler:
+    }else // wenn nenner 0 ist
+    {dort.text("keine Darstellung möglich");
 
   }
 }

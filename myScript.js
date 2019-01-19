@@ -189,10 +189,13 @@ function ergebnischeck(aufgabe){
 	}
 	else{
 		var a1 = aufgabe[0] / aufgabe[1];
+		var l1 = "Error";
 		var l1 = zähler1/nenner1;
 
 
+
 		var ort3 = $(".bilderFeld").children().eq(2);
+
 		bruchbild(zähler1,nenner1, ort3);
 
 		if(a1==l1){
