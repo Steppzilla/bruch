@@ -1,4 +1,5 @@
 
+$(".menu").hide();
 //bruchbild(1,3,  $("#BruchBild"));
 function bruchbild(zähler,nenner, dort){
   var radius  = 50;
