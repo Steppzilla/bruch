@@ -433,17 +433,24 @@ DIV.intro p{  margin: 0;
     height:100%;
     width:auto;
   }
-  .rechtepage{width:100%;}
+  .rechtepage,
+  .main{width:100%;}
   .lösungsplace{
     height: 70pt;
   }
-  .tab{
-    font-size:6pt;
-    height:14pt;
+
+  .bilderFeld .bruchbildböxchen svg{
+    height:80pt;
+  }
+  .bilderFeld .bruchbildböxchen{
+    height: 80pt;
   }
   .bilderFeld{
-    height:40pt;
+    height:80pt;
   }
+
+
+
 }
 
 
@@ -464,8 +471,7 @@ DIV.intro p{  margin: 0;
    }
   .main,
   .aufträge,
-  .gridContainer,
-  .svg
+
   {
 	  width:100%;
   }
