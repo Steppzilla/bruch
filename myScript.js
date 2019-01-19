@@ -184,7 +184,7 @@ function ergebnischeck(aufgabe){
 		bruchbild(zähler1,nenner1, ort3);
 
 		if(a1==l1){
-			$(".zählerböxchen").parent().eq(2).css("background-color","green");
+			$(".zählerböxchen").parent().eq(2).css("background-color","darkgreen");
 		}else{
 			$(".zählerböxchen").parent().eq(2).css("background-color","purple");
 		}
@@ -205,7 +205,7 @@ function ergebnischeck(aufgabe){
 		var ort4 = $(".bilderFeld").children().eq(3);
 		bruchbild(zähler2,nenner2, ort4);
 		if(a2==l2){
-			$(".zählerböxchen").parent().eq(3).css("background-color","green");
+			$(".zählerböxchen").parent().eq(3).css("background-color","darkgreen");
 		}else{
 			$(".zählerböxchen").parent().eq(3).css("background-color","purple");
 		}
@@ -220,7 +220,7 @@ function ergebnischeck(aufgabe){
 		var ort5 = $(".bilderFeld").children().eq(4);
 		bruchbild(zähler3,nenner3, ort5);
 		if(ergebnis==l3){
-			$(".zählerböxchen").parent().eq(4).css("background-color","green");
+			$(".zählerböxchen").parent().eq(4).css("background-color","darkgreen");
 		}else{
 			$(".zählerböxchen").parent().eq(4).css("background-color","purple");
 		}

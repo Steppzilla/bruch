@@ -7,14 +7,26 @@
   font-size:13pt;
   font-family: Roboto, Helvetica, Times New Roman;
 }
-.bruchbildböxchen{
+
+
+
+
+.bilderFeld .bruchbildböxchen{
   display: flex;
   height: auto;
+  justify-content: center;
+  border-radius:10pt;
 }
+.bruchbildböxchen svg{
+
+}
+
+
 .bilderFeld{
+    grid-gap: 4pt;
   display:grid;
  height:80pt;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: 18% 20% 20% 20% 20%;
   justify-content: center;
 
 }
@@ -31,6 +43,7 @@
   grid-template-columns: 100%;
   grid-template-rows: 40% 20% 40%;
   height:80pt;
+  border-radius: 10pt;
 }
 .operatorBox,
 .gleichBox{

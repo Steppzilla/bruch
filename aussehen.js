@@ -1,6 +1,8 @@
 coloring()
 
 function coloring(){
+
+
 	$("p").css("line-height","1.5");
 	vierfarbengeben("verydarkgrey", "darkgrey", "lightgrey", "lightergrey","darkgrey");
 	$("div").addClass("rund");
@@ -19,6 +21,9 @@ function coloring(){
 	var positionX = -window.svghöhe -25-220+"px";
 	$("#taBelle").css("top",positionX);
 
+	$(".bilderFeld .bruchbildböxchen").removeAttr("background-color");
+	$(".bilderFeld .bruchbildböxchen").addClass("lightgrey");
+
 }
 
 function vierfarbengeben(dunkel2, dunkel1, hell1, hell2,hintergrund){
@@ -32,13 +37,14 @@ function vierfarbengeben(dunkel2, dunkel1, hell1, hell2,hintergrund){
 	$(".gerade").addClass(hell1);
 	$(".gerade").children().addClass(hell1);
 	//vierfelder hintergrund:
-	$(".gridContainer").children().eq(1).addClass(hell2);
+		$(".gridContainer").children().eq(1).addClass(hell2);
 		$(".intro").addClass(hell1);
 		$("h1").addClass(dunkel2);
 		$("h2").addClass(dunkel2);
 
 		//allgemeiner Hintergrund:
 		$(".page").addClass(hintergrund);
+
 }
 
 function vierfarbenlöschen(dunkel2, dunkel1, hell1, hell2,hintergrund){
