@@ -70,8 +70,8 @@ function bruchbild(zähler,nenner, dort){
     }
 
     }else // wenn nenner 0 ist
-    {dort.text("keine Darstellung möglich");
-
+    {
+      dort.text("keine Darstellung möglich");
   }
 }
 
