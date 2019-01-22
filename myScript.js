@@ -300,7 +300,7 @@ function buchstaben(i,text){
 			case 14:			letter = "n";				break;
 			case 15:			letter = "o";				break;
 			case 16:			letter = "p";				break;
-			default:			letter = "hier sollte ein Buchstabe stehn!";
+			default:			letter = "?";
 		}
 		var chapter = letter.concat(")");
 
