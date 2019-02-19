@@ -14,7 +14,7 @@
 
 .bilderFeld .bruchbildböxchen{
   display: flex;
-  height: auto;
+  height: 80%;
   justify-content: center;
   border-radius:10pt;
 }
@@ -23,11 +23,16 @@
   padding:5pt;
   grid-gap: 4pt;
   display:grid;
-  height:80pt;
+  height:40%;
   grid-template-columns: 18% 20% 20% 20% 20%;
-  justify-content: center;
+
 
 }
+#aufgabenFeld{
+  padding:30pt;
+  margin-top:20pt;
+}
+
 #aufgabenFeld p{
   display:grid;
   grid-column-gap: 2pt;
@@ -67,6 +72,7 @@ justify-content: center;
   align-items:center;
   justify-content:center;
   text-align:center;
+
 
 }
 
@@ -128,15 +134,6 @@ foreignObject{
   width:100%;
 }
 
-
-.myeqn.math{
-  zoom: .6;
-  -moz-transform: scale(.6);
-
-}
-.mathe{
-  background-color:green;
-}
 /* die scrollbars ewerden in den 4 elementen eingestellt:*/
 /***** width*/
 ::-webkit-scrollbar {
@@ -159,33 +156,7 @@ foreignObject{
   padding: 5pt;
 }
 
-/*TABELLE*/
-.tabelle{
-   border-collapse: collapse;
-   position:relative;
-   margin:1%;
-   width:97%;
-   pointer-events: none;
-}
-#taBelle .tab{
-  width:25%;
-  height:53px;
-  text-align:center;
-}
-.tab{
-  width:25%;
-  height:53px;
-  text-align:center;
-}
-.zeile2, .zeile3, .zeile4{
-  border-top:4px solid #A9A9A9	;
 
-}
-.spalte2,
-.spalte3,
-.spalte4{
-    border-left:4px solid #A9A9A9	;
-}
 
 
 .blackMuster{background:
@@ -357,54 +328,6 @@ h3{
 .lös{
   width: 100%;
 }
-/*Buchstaben-Div-Breite*/
-.überschrift{
-width:6%;
-}
-.auftragsText{
-	width: 94%;
-}
-/*VierfelderTafel*/
-.gridContainer{
-  height:250px;
-  display:grid;
-  grid-gap:0pt;
-  grid-template-columns:100%;
-  grid-template-rows:13% 87%;
-}
-.gridFenster{
-  margin:auto;
-  /*justify-content:center;*/
-  width: 100%;
-	height:100%;
-	display:grid;
-	padding:5pt;
-	grid-gap:3pt;
-	grid-template-columns:24% 24% 24% 24%;
-	grid-template-rows:23.5% 24% 24% 24%;
-}
-DIV.intro{	display:flex;
-height:100%;
-
-align-items:center;
-justify-content:center;
-}
-DIV.intro p{  margin: 0;
-	text-align:center;
-    }
-    /* Baumdiagramm:*/
-.svg{
-  pointer-events: fill;
-  position: relative;
-  left: 0;
-  top: 0;
-  align-content: center;
-}
-.lösungen{
-  height:10%;
-  width:100%;
-}
-.lösung{width:50%;}
 
 
 
@@ -429,7 +352,7 @@ DIV.intro p{  margin: 0;
   }
   .aufgabenübersicht{
     flex-direction:column;
-    height:40pt;
+    height:60pt;
     width:100%;
   }
   .menüicon,
@@ -544,5 +467,6 @@ flex-direction: column;
   font-size:10pt;
   height:30pt;
 }
+
 
 }
